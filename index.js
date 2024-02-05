@@ -7,11 +7,6 @@ const fs = require("fs");
 const questions = [
   {
     type: "input",
-    name: "name",
-    message: "What is your name?",
-  },
-  {
-    type: "input",
     name: "fileName",
     message: "What is the name of your file?",
   },
@@ -32,8 +27,12 @@ inquirer.prompt(questions).then((data) => {
   const { fileName, fileType, title } = data;
 
   const file = `${fileName}.${fileType}`;
-  console.log(file);
-  console.log(title);
+  console.log(data);
+
+  writeFile(file, data, (err) => {
+    if (err) throw err;
+    console.log("The file has been saved!");
+  });
 });
 
 // function to write README file
