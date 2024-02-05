@@ -24,15 +24,24 @@ const questions = [
 ];
 
 inquirer.prompt(questions).then((data) => {
-  const { fileName, fileType, title } = data;
-
+  const { fileName, fileType, header } = data;
   const file = `${fileName}.${fileType}`;
-  console.log(data);
 
-  writeFile(file, data, (err) => {
-    if (err) throw err;
-    console.log("The file has been saved!");
-  });
+  switch (fileType) {
+    case "html":
+      createHtmlTemplate(header);
+      break;
+    case "md":
+      createMarkdownTemplate(header);
+      break;
+
+    default:
+      break;
+  }
+
+  fs.writeFile(file, header, (err) =>
+    err ? console.log("oops,, there's an err") : console.log("it worked!")
+  );
 });
 
 // function to write README file
