@@ -1,6 +1,7 @@
-// const path = require('path');
+const path = require("path");
 const inquirer = require("inquirer");
 const fs = require("fs");
+const util = require("util");
 // const generateMarkdown = require("./utils/generateMarkdown");
 
 // array of questions for user
@@ -24,18 +25,18 @@ const questions = [
 ];
 
 const createHtmlTemplate = (header) => {
-  const htmlTemplate = `
+  return `
     <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 <body>
+<header>${header}</header>
+</body>
 </html>`;
-
-  return htmlTemplate;
 };
 
 const createMarkdownTemplate = (header) => {
@@ -60,8 +61,9 @@ inquirer.prompt(questions).then((data) => {
       break;
   }
 
+  // function to write README file
   fs.writeFile(file, fileText, (err) =>
-    err ? console.log("oops,, there's an err") : console.log("it worked!")
+    err ? console.log("Error") : console.log("Success!")
   );
 });
 
