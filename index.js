@@ -23,23 +23,44 @@ const questions = [
   },
 ];
 
+const createHtmlTemplate = (header) => {
+  const htmlTemplate = `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+</html>`;
+
+  return htmlTemplate;
+};
+
+const createMarkdownTemplate = (header) => {
+  return `# ${header}`;
+};
+
 inquirer.prompt(questions).then((data) => {
   const { fileName, fileType, header } = data;
   const file = `${fileName}.${fileType}`;
+  let fileText;
 
   switch (fileType) {
     case "html":
-      createHtmlTemplate(header);
+      fileText = createHtmlTemplate(header);
       break;
     case "md":
-      createMarkdownTemplate(header);
+      fileText = createMarkdownTemplate(header);
       break;
 
     default:
+      fileText = "Oops, this file type isn't implemented yet";
       break;
   }
 
-  fs.writeFile(file, header, (err) =>
+  fs.writeFile(file, fileText, (err) =>
     err ? console.log("oops,, there's an err") : console.log("it worked!")
   );
 });
