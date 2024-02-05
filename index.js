@@ -61,19 +61,51 @@ const questions = () =>
     // },
   ]);
 
-const createHtmlTemplate = (header) => {
+const generateREADME = (header) => {
   return `
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-<header>${header}</header>
-</body>
-</html>`;
+    # ${data.title}
+
+## Description
+${data.description}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
+
+## License
+This project is licensed under the ${data.license} License.
+
+## Contributing
+${data.contributing}
+
+## Tests
+${data.tests}
+
+## Questions
+If you have any questions, you can reach out to me on GitHub: [${data.github}](https://github.com/${data.github})
+or via email: ${data.email}`;
+  //   return `
+  //     <!DOCTYPE html>
+  // <html lang="en">
+  // <head>
+  //   <meta charset="UTF-8">
+  //   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  //   <title>Document</title>
+  // </head>
+  // <body>
+  // <header>${header}</header>
+  // </body>
+  // </html>`;
 };
 
 const createMarkdownTemplate = (header) => {
@@ -98,14 +130,21 @@ inquirer.prompt(questions).then((data) => {
       break;
   }
 
-  // function to write README file
-  fs.writeFile(file, fileText, (err) =>
-    err ? console.log("Error") : console.log("Success!")
-  );
-});
+//   // function to write README file
+//   fs.writeFile(file, fileText, (err) =>
+//     err ? console.log("Error") : console.log("Success!")
+//   );
+// });
 
 // function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) =>
+    err ? console.error(err) : console.log("README generated successfully!")
+  );
+}
+
+// // function to write README file
+// function writeToFile(fileName, data) {}
 
 // function to initialize program
 function init() {}
