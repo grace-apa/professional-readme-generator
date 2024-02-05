@@ -21,11 +21,19 @@ const questions = [
     message: "Choose your preferred file extension?",
     choices: ["md", "txt", "html"],
   },
+  {
+    type: "input",
+    name: "title",
+    message: "Please type a title",
+  },
 ];
 
 inquirer.prompt(questions).then((data) => {
-  const file = `${data.fileName}.${data.fileType}`;
-  console.log(data);
+  const { fileName, fileType, title } = data;
+
+  const file = `${fileName}.${fileType}`;
+  console.log(file);
+  console.log(title);
 });
 
 // function to write README file
