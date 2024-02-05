@@ -10,6 +10,16 @@ const questions = [
     name: "name",
     message: "What is your name?",
   },
+  {
+    type: "input",
+    name: "name",
+    message: "What is the name of your file?",
+  },
+  {
+    type: "input",
+    name: "name",
+    message: "What is the name of your file extension?",
+  },
 ];
 
 inquirer.prompt(questions).then((data) => {
