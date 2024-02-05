@@ -12,17 +12,19 @@ const questions = [
   },
   {
     type: "input",
-    name: "name",
+    name: "fileName",
     message: "What is the name of your file?",
   },
   {
-    type: "input",
-    name: "name",
-    message: "What is the name of your file extension?",
+    type: "list",
+    name: "fileType",
+    message: "Choose your preferred file extension?",
+    choices: ["md", "txt", "html"],
   },
 ];
 
 inquirer.prompt(questions).then((data) => {
+  const file = `${data.fileName}.${data.fileType}`;
   console.log(data);
 });
 
