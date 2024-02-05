@@ -5,24 +5,61 @@ const util = require("util");
 // const generateMarkdown = require("./utils/generateMarkdown");
 
 // array of questions for user
-const questions = [
-  {
-    type: "input",
-    name: "fileName",
-    message: "What is the name of your file?",
-  },
-  {
-    type: "list",
-    name: "fileType",
-    message: "Choose your preferred file extension?",
-    choices: ["md", "txt", "html"],
-  },
-  {
-    type: "input",
-    name: "title",
-    message: "Please type a title",
-  },
-];
+const questions = () =>
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "fileName",
+      message: "What is the title of your project?",
+    },
+    {
+      type: "input",
+      name: "description",
+      message: "Provide a brief description of your project?",
+    },
+    {
+      type: "input",
+      name: "installation",
+      message: "How can users install your project?",
+    },
+    {
+      type: "input",
+      name: "usage",
+      message: "How should users use your project?",
+    },
+    {
+      type: "list",
+      name: "license",
+      message: "Choose a license for your project:",
+      choices: ["MIT", "None"],
+    },
+    {
+      type: "input",
+      name: "contributing",
+      message: "How can others contribute to your project?",
+    },
+    {
+      type: "input",
+      name: "tests",
+      message: "Please provide instructions for running tests:",
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "What is your GitHub username?",
+    },
+    // {
+    //   type: "list",
+    //   name: "fileType",
+    //   message: "Choose your preferred file extension?",
+    //   choices: ["md", "txt", "html"],
+    // },
+    // {
+    //   type: "input",
+    //   name: "title",
+    //   message: "Please type a title",
+    // },
+  ]);
 
 const createHtmlTemplate = (header) => {
   return `
