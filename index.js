@@ -48,20 +48,9 @@ const questions = () =>
       name: "github",
       message: "What is your GitHub username?",
     },
-    // {
-    //   type: "list",
-    //   name: "fileType",
-    //   message: "Choose your preferred file extension?",
-    //   choices: ["md", "txt", "html"],
-    // },
-    // {
-    //   type: "input",
-    //   name: "title",
-    //   message: "Please type a title",
-    // },
   ]);
 
-const generateREADME = (header) => {
+const generateREADME = (answers) => {
   return `
     # ${data.title}
 
@@ -108,26 +97,26 @@ or via email: ${data.email}`;
   // </html>`;
 };
 
-const createMarkdownTemplate = (header) => {
+const createMarkdownTemplate = (answers) => {
   return `# ${header}`;
 };
 
 inquirer.prompt(questions).then((data) => {
-  const { fileName, fileType, header } = data;
-  const file = `${fileName}.${fileType}`;
+  const { fileName, data, answers } = data;
+  const file = `${fileName}.${data}`;
   let fileText;
 
-  switch (fileType) {
-    case "html":
-      fileText = createHtmlTemplate(header);
-      break;
-    case "md":
-      fileText = createMarkdownTemplate(header);
-      break;
+//   switch (fileType) {
+//     case "html":
+//       fileText = createHtmlTemplate(answers);
+//       break;
+//     case "md":
+//       fileText = createMarkdownTemplate(answers);
+//       break;
 
-    default:
-      fileText = "Oops, this file type isn't implemented yet";
-      break;
+//     default:
+//       fileText = "Oops, this file type isn't implemented yet";
+//       break;
   }
 
 //   // function to write README file
