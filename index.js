@@ -1,4 +1,4 @@
-// const path = require("path");
+const path = require("path");
 const inquirer = require("inquirer");
 const fs = require("fs");
 // const util = require("util");
@@ -49,7 +49,7 @@ const questions = [
   },
 ];
 
-const generateREADME = (answers) => {
+const generateREADME = (data) => {
   return `
     # ${data.title}
 
@@ -100,60 +100,25 @@ const createMarkdownTemplate = (answers) => {
   return `# ${header}`;
 };
 
-inquirer.prompt(questions).then((answers) => {
-  const { fileName } = answers;
-  const file = `${fileName}.md`;
-  const fileText = generateREADME(answers);
-});
-
-// mini project - Aarons version
-promptUser()
-  .then((answers) => fs.writeFileAsync(generateREADME(answers)))
-  .then(() => console.log("Successfulley generated README"))
-  .catch((err) => console.error(err));
-
-// another version:
-// promptUser()
-//   .then((answers) => {
-//     const readmeContent = generateREADME(answers);
-//     fs.writeFileSync("README.md", readmeContent);
-//     console.log("README generated successfully!");
-//   })
-//   .catch((error) => {
-//     console.error("Error occurred:", error);
-//   });
-
-//   switch (fileType) {
-//     case "html":
-//       fileText = createHtmlTemplate(answers);
-//       break;
-//     case "md":
-//       fileText = createMarkdownTemplate(answers);
-//       break;
-
-//     default:
-//       fileText = "Oops, this file type isn't implemented yet";
-//       break;
-//   }
-
-//   // function to write README file
-//   fs.writeFile(file, fileText, (err) =>
-//     err ? console.log("Error") : console.log("Success!")
-//   );
+// inquirer.prompt(questions).then((answers) => {
+//   console.log(answers);
+//   const { fileName } = answers;
+//   const file = `${fileName}.md`;
+//   const fileText = generateREADME(answers);
 // });
 
 // function to write README file
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, (err) => {
-    err ? console.error("err") : console.log("README generated successfully!");
-  });
+  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
-// // function to write README file
-// function writeToFile(fileName, data) {}
-
 // function to initialize program
-function init() {}
+function init() {
+  inquirer.prompt(questions).then((inquirerResponses) => {
+    console.log("Generating README...");
+    writeToFile("README.md", generateREADME({ ...inquirerResponses }));
+  });
+}
 
 // function call to initialize program
 init();
