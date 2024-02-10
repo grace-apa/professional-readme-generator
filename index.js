@@ -14,12 +14,17 @@ const questions = [
   {
     type: "input",
     name: "description",
-    message: "Provide a brief description of your project?",
+    message: "Provide a brief description of your project:",
   },
   {
     type: "input",
     name: "installation",
-    message: "How can users install your project?",
+    message: "How can users install dependencies?",
+  },
+  {
+    type: "input",
+    name: "tests",
+    message: "Please provide instructions for running tests:",
   },
   {
     type: "input",
@@ -36,11 +41,6 @@ const questions = [
     type: "input",
     name: "contributing",
     message: "How can others contribute to your project?",
-  },
-  {
-    type: "input",
-    name: "tests",
-    message: "Please provide instructions for running tests:",
   },
   {
     type: "input",

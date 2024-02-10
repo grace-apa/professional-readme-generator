@@ -1,32 +1,37 @@
+README Generator
 
-    # undefined
+## Link to functionality video:
+
+https://drive.google.com/file/d/1f_FApt1O0yy6EBLlZXN4fJ6g1JCg5jD_/view
 
 ## Description
-b
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
-- [Contributing](#contributing)
-- [Tests](#tests)
-- [Questions](#questions)
+A command-line application that dynamically generates a professional README.md file from a user's input
 
 ## Installation
-c
+
+NPM i
 
 ## Usage
-v
+
+Run 'node index.js' in your terminal
+
+## Credits
+
+N/A
 
 ## License
-This project is licensed under the MIT License.
 
-## Contributing
-th
+MIT
+
+## Features
+
+N/A
+
+## Contribute
+
+https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md
 
 ## Tests
-tes
 
-## Questions
-If you have any questions, you can reach out to me on GitHub: [gra](https://github.com/gra)
-or via email: undefined
+NPM Test
